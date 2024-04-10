@@ -17,7 +17,7 @@ async def on_ready():
 
 @bot.command()
 async def Define(ctx, *, word):
-    # Call a dictionary API to get the definition
+    # Call a dictionary API to get the definition.
     response = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
     if response.status_code == 200:
         data = response.json()
