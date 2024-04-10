@@ -16,7 +16,7 @@ async def on_ready():
     print(f'We have logged in as {bot.user}')
 
 @bot.command()
-async def Define(ctx, *, word):
+async def define(ctx, *, word):
     # Call a dictionary API to get the definition.
     response = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
     if response.status_code == 200:
@@ -28,5 +28,22 @@ async def Define(ctx, *, word):
     else:
         await ctx.send(f"Sorry, I couldn't find a definition for '{word}'")
 
+@bot.command()
+async def slang(ctx, *, term):
+    # Call Urban Dictionary API to get the definition.
+    response = requests.get(f'https://api.urbandictionary.com/v0/define?term={term}')
+    if response.status_code == 200:
+        data = response.json()
+        if data["list"]:
+            definition = data["list"][0]["definition"]
+            await ctx.send(f"**{term.capitalize()}**: {definition}")
+        else:
+            await ctx.send(f"Sorry, I couldn't find a definition for '{term}'")
+    else:
+        await ctx.send("Failed to fetch definition.")
+
+@bot.command()
+async def commands(ctx):
+    await ctx.send("**(define/slang)** *(word)*")
 # Run the bot with your token
 bot.run(BOT_TOKEN)
