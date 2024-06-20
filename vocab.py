@@ -121,7 +121,7 @@ my: Burmese
 ca: Catalan
 ch: Chamorro
 ce: Chechen
-zh: Chinese
+zh: Chinese (not working)
 cv: Chuvash
 kw: Cornish
 co: Corsican
